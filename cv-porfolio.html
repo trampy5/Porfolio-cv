@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio CV – Ime Priimek</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Profesionalni portfolio CV – Ime Priimek" />
+
+  <!-- Google font (opcijsko) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-card: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --radius-xl: 18px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0edff, #f9fafb 45%, #eef2ff 80%);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 32px 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      max-width: 1080px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+      padding: 32px;
+      border: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    .header {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #dbeafe, #eff6ff);
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: #1d4ed8;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    /* Če imaš sliko, jo daj v .avatar img */
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .headline {
+      flex: 1;
+    }
+
+    .name {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+
+    .position {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .summary {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+
+    .contact {
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .contact-item span.icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.15fr);
+      gap: 24px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(191, 219, 254, 0.36), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card-pill {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+      background: rgba(248, 250, 252, 0.8);
+    }
+
+    /* Seznami izkušenj, izobrazbe, projektov */
+    .item {
+      margin-bottom: 12px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 3px;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .item-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .item-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .item-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .bullets {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .bullets li {
+      margin-bottom: 3px;
+    }
+
+    /* Skills / znanja */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #1d4ed8;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tag.muted {
+      background: #f3f4f6;
+      border-color: #e5e7eb;
+      color: #4b5563;
+    }
+
+    /* Jeziki / language bars */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      gap: 8px;
+      font-size: 0.86rem;
+    }
+
+    .lang-label {
+      font-weight: 500;
+    }
+
+    .lang-level {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .lang-bar {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .lang-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #4f46e5);
+    }
+
+    /* Za hobby, certifikate */
+    .mini-list {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+    }
+
+    .mini-list span::before {
+      content: "• ";
+      color: #9ca3af;
+    }
+    .skill {
+  margin-bottom: 12px;
+}
+
+.skill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.86rem;
+  margin-bottom: 4px;
+}
+
+.skill-label {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-level {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+}
+
+
+    /* Responsivnost */
+    @media (max-width: 900px) {
+      .page {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .contact {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px 8px;
+      }
+
+      .page {
+        padding: 16px;
+      }
+
+      .name {
+        font-size: 1.7rem;
+      }
+
+      .card {
+        padding: 14px;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+    }
+
+    /* Print stil (če želiš izvoziti v PDF) */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border-radius: 0;
+        border: none;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- ZGORNJI DEL: ime + kontakt -->
+    <header class="header">
+      <div class="avatar">
+        <!-- Če imaš svojo sliko, odkomentiraj spodnjo vrstico in zamenjaj src -->
+        <!-- <img src="moja-slika.jpg" alt="Portret Ime Priimek"> -->
+        IP
+      </div>
+
+      <div class="headline">
+        <div class="position">Snemalec / Tehnik Računalništva / Fotograf</div>
+        <h1 class="name">Nejc Trampuš</h1>
+        <p class="summary">
+            Sem zanesljiv in ustvarjalen posameznik s praktičnimi izkušnjami na področju fotografije, snemanja in osnov razvoja spletnih strani. Ob delu se izobražujem na programu Organizacija in management informacijskih sistemov, kjer razvijam razumevanje informacijskih rešitev in digitalnih procesov. Odlikuje me natančnost, tehnična podpora ter sposobnost jasne komunikacije pri delu z ljudmi in ekipami. Svoja znanja povezujem v kakovostne projekte, 
+            ki združujejo vizualno kreativnost in tehnološko razumevanje.
+        </p>
+      </div>
+
+      <div class="contact">
+        <div class="contact-item">
+          <span class="icon">✉</span>
+          <a href="mailto:ime.priimek@email.com">ime.priimek@email.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="icon">☎</span>
+          <span>+386 40 000 000</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">🌍</span>
+          <span>Ljubljana, Slovenija</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">in</span>
+          <a href="https://www.linkedin.com/in/username" target="_blank">linkedin.com/in/username</a>
+        </div>
+        <div class="contact-item">
+          <span class="icon">💻</span>
+          <a href="https://github.com/username" target="_blank">github.com/username</a>
+        </div>
+        <div class="contact-item">
+          <span class="icon">🔗</span>
+          <a href="https://moj-portfolio.si" target="_blank">moj-portfolio.si</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- SPODNJI DEL: 2 stolpca -->
+    <section class="content">
+
+      <!-- LEVI STOLPEC -->
+      <div class="column">
+        <!-- Delovne izkušnje -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Delovne izkušnje</h2>
+              <span class="card-pill">3+ leta izkušenj</span>
+            </div>
+
+            <div class="item">
+            <div class="item-header">
+                <div class="item-title">Snemalec</div>
+                <div class="item-meta">2023 – danes | TV Medvode</div>
+            </div>
+            <div class="item-subtitle">Snemanje televizijskih prispevkov, prireditev in dogodkov</div>
+            <ul class="bullets">
+                <li>Snemanje lokalnih dogodkov, prireditev, novinarskih prispevkov in intervjujev.</li>
+                <li>Upravljanje profesionalne snemalne opreme (kamere, mikrofonija, svetloba).</li>
+                <li>Priprava snemalne lokacije ter skrb za tehnično izvedbo prenosa.</li>
+                <li>Sodelovanje z novinarji, režiserjem in montažerji pri pripravi vsebin.</li>
+                <li>Montaža oddaj ki so bile predvidene za predvajanje.</li>
+                <li>Natančno beleženje kadrov in skrb za kakovosten zvok ter sliko.</li>
+            </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Projekti -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Izbrani projekti</h2>
+            </div>
+
+            <div class="item">
+            <div class="item-header">
+                <div class="item-title">Osebna portfolio spletna stran</div>
+                <div class="item-meta">
+                <a href="https://moj-portfolio.si" target="_blank">moj-portfolio.si</a>
+                </div>
+            </div>
+            <div class="item-subtitle">HTML, CSS, JavaScript</div>
+            <p class="item-desc">
+                Spletna stran, kjer predstavljam svoje projekte, znanja in delovne izkušnje.
+                V ospredju sta čista struktura, pregledna predstavitev informacij in prilagodljiv
+                dizajn za različne naprave (responsive design). Vključeni so kontakti in povezave
+                na primere mojega dela.
+            </p>
+            </div>
+            <div class="item">
+            <div class="item-header">
+                <div class="item-title">Trampuš Photography – portfolio fotografij</div>
+                <div class="item-meta">
+                <a href="https://trampus-photography.si" target="_blank">trampus-photography.si</a>
+                </div>
+            </div>
+            <div class="item-subtitle">HTML, CSS, JavaScript</div>
+            <p class="item-desc">
+                Portfolio spletna stran, namenjena predstavitvi mojih fotografskih projektov, dogodkov
+                in ustvarjalnega dela. Vključuje galerije, pregledne kategorije ter minimalističen dizajn,
+                ki poudari vizualne vsebine. Stran omogoča klaren prikaz mojega stila fotografiranja in
+                je optimizirana za mobilne naprave.
+            </p>
+            </div>
+
+
+
+          </div>
+        </article>
+      </div>
+
+      <!-- DESNI STOLPEC -->
+      <div class="column">
+        <!-- Tehnične veščine -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Tehnične veščine</h2>
+              <span class="card-pill">Glavna znanja</span>
+            </div>
+
+            <h3 style="font-size:0.86rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:4px;">Frontend znanja</h3>
+            
+            <div class="skill">
+            <div class="skill-row">
+                <span class="skill-label">Sql</span>
+                <span class="skill-level">4/5</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 40%;"></div></div>
+            </div>
+
+            <div class="skill">
+            <div class="skill-row">
+                <span class="skill-label">HTML5</span>
+                <span class="skill-level">3/5</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 60%;"></div></div>
+            </div>
+
+            <div class="skill">
+            <div class="skill-row">
+                <span class="skill-label">CSS3</span>
+                <span class="skill-level">3/5</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 60%;"></div></div>
+            </div>
+
+            <div class="skill">
+            <div class="skill-row">
+                <span class="skill-label">JavaScript</span>
+                <span class="skill-level">2/5</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 40%;"></div></div>
+            </div>
+
+            <div class="skill">
+            <div class="skill-row">
+                <span class="skill-label">Python</span>
+                <span class="skill-level">2/5</span>
+            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 40%;"></div></div>
+            </div>
+
+
+
+            <h3 style="font-size:0.86rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin:10px 0 4px;">Orodja &amp; ostalo</h3>
+            <div class="tags">
+              <span class="tag muted">Adobe Premier Pro</span>
+              <span class="tag muted">Adobe Photoshop</span>
+              <span class="tag muted">Microsoft Word</span>
+              <span class="tag muted">Microsoft Excel</span>
+              <span class="tag muted">Microsoft Power Point</span>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- Izobrazba -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Izobrazba</h2>
+              <span class="card-pill">Formalna &amp; neformalna</span>
+            </div>
+
+            <div class="item">
+            <div class="item-header">
+                <div class="item-title">Tehnik računalništva</div>
+                <div class="item-meta">Zaključeno |4-letni program</div>
+            </div>
+            <div class="item-subtitle">Srednja šola za računalništvo (ŠCKR), Slovenija</div>
+            <p class="item-desc">
+                Zaključen program s poudarkom na računalniških sistemih, omrežjih, programiranju, bazah podatkov in informacijski varnosti.
+            </p>
+            </div>
+
+
+          </div>
+        </article>
+
+        <!-- Jeziki -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Jeziki</h2>
+              <span class="card-pill">Komunikacija</span>
+            </div>
+
+            <div class="lang-row">
+              <span class="lang-label">Slovenščina</span>
+              <div class="lang-bar">
+                <div class="lang-fill" style="width: 100%;"></div>
+              </div>
+              <span class="lang-level">materni jezik</span>
+            </div>
+
+            <div class="lang-row">
+            <span class="lang-label">Angleščina</span>
+            <div class="lang-bar">
+                <div class="lang-fill" style="width: 70%;"></div>
+            </div>
+            <span class="lang-level">B1/B2</span>
+            </div>
+
+
+        </article>
+
+        <!-- Certifikati & interesi -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-header">
+              <h2 class="card-title">Certifikati &amp; interesi</h2>
+              <span class="card-pill">Osebno</span>
+            </div>
+
+
+
+            <h3 style="font-size:0.86rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); margin-bottom:4px;">Interesi</h3>
+            <div class="mini-list">
+              <span>Video</span>
+              <span>Potovanja</span>
+              <span>Fotografija</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
